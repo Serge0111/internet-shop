@@ -1,9 +1,66 @@
+@import "../../assets/css/_variables.sass"
 .cart
     margin-right: 30px 
     display: flex
     flex-direction: row
+    .cart-icon
+        margin-right: 15px 
+    .cart-text
+        font-family: $OpenSansRegular
+        font-size: 16px
+        &:after
+            content: ""
+            display: block
+            width: inherit
+            height: 1px
+            background: black
+
+        span
+            color: #8f54b2
     
 .cart-list
+    background-color: white 
     position: absolute
     right: 200px
-    border: 2px solid black 
+    width: 302px
+    font-family: $OpenSansSemiBold
+    .product-to-buy
+        width: 100%
+        display: flex
+        flex-direction: row
+        margin: 25px 0 35px 30px
+        .product-img
+            width: 60px
+            height: 65px
+            flex-grow: 1
+            img
+                width: 60px
+                height: 65px
+
+        .product-info
+            flex-grow: 3
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            button
+                border: none
+                outline: none
+                background: white
+                cursor: pointer
+                span
+                     font-family: $OpenSansRegular
+                     font-size: 12px
+        .cart-button
+            flex-grow: 3
+            button
+                border: none
+                outline: none
+                background: white
+                cursor: pointer
+                img
+                    width: 16px
+                    height: 16px
+
+            img
+                width: 60px
+                height: 65px

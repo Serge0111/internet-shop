@@ -10,39 +10,75 @@ export class AppComponent {
   public products = [
     {
       id: 1,
-      articul: 1123,
+      item: 1123,
       brand: 'Fromental',
-      price: 1010
+      price: 1010,
+      amount: 1,
+      image: '../assets/images/wall-paper1.png'
     },
     {
-      id: 1,
-      articul: 1152,
+      id: 2,
+      item: 1152,
       brand: 'Fromental',
-      price: 1000
+      price: 1000,
+      amount: 1,
+      image: '../assets/images/wall-paper2.png'
     },
     {
-      id: 1,
-      articul: 1623,
+      id: 3,
+      item: 1623,
       brand: 'Fromental',
-      price: 2000
+      price: 2000,
+      amount: 1,
+      image: '../assets/images/wall-paper3.png'
     },
     {
-      id: 1,
-      articul: 1463,
+      id: 4,
+      item: 1463,
       brand: 'Fromental',
-      price: 4200
+      price: 4200,
+      amount: 1,
+      image: '../assets/images/wall-paper4.png'
     },
     {
-      id: 1,
-      articul: 1723,
+      id: 5,
+      item: 1723,
       brand: 'Fromental',
-      price: 7300
+      price: 7300,
+      amount: 1,
+      image: '../assets/images/wall-paper4.png'
     },
     {
-      id: 1,
-      articul: 1923,
+      id: 6,
+      item: 1923,
       brand: 'Fromental',
-      price: 8000
+      price: 8000,
+      amount: 1,
+      image: '../assets/images/wall-paper5.png'
+    },
+    {
+      id: 7,
+      item: 1463,
+      brand: 'Fromental',
+      price: 4200,
+      amount: 1,
+      image: '../assets/images/wall-paper4.png'
+    },
+    {
+      id: 8,
+      item: 1723,
+      brand: 'Fromental',
+      price: 7300,
+      amount: 1,
+      image: '../assets/images/wall-paper4.png'
+    },
+    {
+      id: 9,
+      item: 1923,
+      brand: 'Fromental',
+      price: 8000,
+      amount: 1,
+      image: '../assets/images/wall-paper5.png'
     }
   ];
   public cart = [];

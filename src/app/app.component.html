@@ -1,15 +1,17 @@
-<div class="main-wrapper">
-  <header class="main-header">
-    <app-header>
-      <app-cart [allCart] = "cart"></app-cart>
-    </app-header>
-  </header>
-  <section class="main-section">
-    <app-section>
-      <app-products [products] = 'products' (intoCart) = "intoCartArray($event)"></app-products>
-    </app-section>
-  </section>
+<div class="wrapper">
+  <div class="main-wrapper">
+    <header class="main-header">
+      <app-header>
+        <app-cart [allCart] = "cart"></app-cart>
+      </app-header>
+    </header>
+    <section class="main-section">
+      <app-section>
+        <app-products [products] = 'products' (intoCart) = "intoCartArray($event)"></app-products>
+      </app-section>
+    </section>
+  </div>
   <footer class="main-footer">
-    <app-footer></app-footer>
+      <app-footer></app-footer>
   </footer>
 </div>

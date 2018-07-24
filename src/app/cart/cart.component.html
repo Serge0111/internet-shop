@@ -1,17 +1,20 @@
 <div class="cart" (click) = "switchCart()">
-    <div>
+    <div class="cart-icon">
         <img [src]="cartIcon" alt="cart">
     </div>
-    <div>Корзина<span>(0)</span></div>
+    <div class="cart-text">КОРЗИНА<span> (0)</span></div>
 </div>
 <div class="cart-list" *ngIf = "cartSwitcher">
-    <div *ngFor = "let cart of allCart; let i = index">
-        <div>Артикул:{{i}} {{cart.articul}}</div>
-        <div>Бренд: {{cart.brand}}</div>
-        <div>Цена: {{cart.price}}</div>
-        <div><button (click) = "Amoun">-</button>Количество<button>+</button>></div>
-        <button (click) = "removeFromCart(i, allCart)">X</button>
+    <div class="product-to-buy" *ngFor = "let cart of allCart; let i = index">
+        <div class="product-img"><img [src]="cart.image" [alt]="cart.image"></div>
+        <div class="product-info">
+            <div>Обои</div>
+            <div><button (click) = "Amoun">-</button>{{cart.amount}}<button><span>+</span></button></div>
+            <div>Цена: {{cart.price}}</div>
+        </div>
+        <div class="cart-button">
+            <button (click) = "removeFromCart(i, allCart)"><img src="../../assets/images/delete.png"></button>
+        </div>
     </div>
-    <div>{{allCart.length}}</div>
     <div>{{price}}</div>
 </div>

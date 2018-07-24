@@ -1,10 +1,10 @@
 <div class="products-wrap">
     <div class="products" *ngFor = "let product of products">
-        <img src="" [alt]="">
+        <img [src]="product.image" [alt]="product.image">
         <p>Обои</p>
-        <div>Артикул: {{product.articul}}</div>
+        <div>Артикул: {{product.item}}</div>
         <div>Бренд: {{product.brand}}</div>
         <div>Цена: {{product.price}}</div>
-        <button (click) = "throwIntoCart(product)">Заказать</button>
+        <button id="button-order"(click) = "throwIntoCart(product)">Заказать</button>
     </div>
 </div>
