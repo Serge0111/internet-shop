@@ -6,7 +6,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
-  public emblem = '../../assets/images/gluts.png'; 
+  public emblem = '../../assets/images/gluts.png';
   public phoneNumber = '../../assets/images/phone-number.png';
   public searchBy = [{
     'По умолчанию': 'all'

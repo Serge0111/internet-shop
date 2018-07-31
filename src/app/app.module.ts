@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CartComponent } from './cart/cart.component';
 import { CartPipe } from './cart.pipe';
 import { ProductsComponent } from './products/products.component';
+import { SearchLivePipe } from './header/search-live.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ProductsComponent } from './products/products.component';
     FooterComponent,
     CartComponent,
     CartPipe,
-    ProductsComponent
+    ProductsComponent,
+    SearchLivePipe
   ],
   imports: [
     BrowserModule
