@@ -1,11 +1,31 @@
  <header class="header-wrap">
   <div class="emblem">
-    <img [src]="phoneNumber" alt="phoneNumber"> 
-    <img [src]="emblem" alt="emblem">  
+    <div class="phone-numbers">
+      <a href="tel:+74957732310">+7(495)-773-23-10; </a>
+      <a href="tel:+74951716202">+7(495)-171-62-02</a>
+    </div>
+    <div class="gluts">
+      <a href=""><img [src]="emblem" alt="emblem"></a> 
+    </div>
   </div>
   <div class="search">
-    <input type="text" placeholder="Более 1000 товаров">
+    <input type="text" (input) = "sendSearchData(searchDataOut.value)" placeholder="Более 1000 товаров" #searchDataOut>
     <input type="submit" value="">
+    <div class="search-result">
+      <ul>
+        <li *ngFor ="let product of products | searchLive: [searchLiveData, sort]">
+          <div>{{product.item}}</div>
+          <div>{{product.price}}</div>
+          <div>{{product.brand}}</div>
+        </li>
+      </ul>
+    </div>
+    <div class="search-by">
+      <ul>
+        <li>Искать по:</li>
+        <li *ngFor = 'let sort of objectKeys' (click) = "getSorted(sort)">{{sort}}</li>
+      </ul>
+    </div>
   </div>
   <ng-content select="app-cart"></ng-content>
 </header>
