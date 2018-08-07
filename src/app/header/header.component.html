@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="search">
-    <input type="text" (input) = "sendSearchData(searchDataOut.value)" placeholder="Более 1000 товаров" #searchDataOut>
+    <input type="text" (input) = "searchDataBy(findDataBy.value)" placeholder="Более 1000 товаров" #findDataBy>
     <input type="submit" value="">
     <div class="search-result">
       <ul>
@@ -23,7 +23,7 @@
     <div class="search-by">
       <ul>
         <li>Искать по:</li>
-        <li *ngFor = 'let sort of objectKeys' (click) = "getSorted(sort)">{{sort}}</li>
+        <li *ngFor = 'let sort of objectKeys' (click) = "getFieldToSortBy(sort)">{{sort}}</li>
       </ul>
     </div>
   </div>

@@ -1,13 +1,13 @@
 <div class="wrapper">
   <div class="main-wrapper">
     <header class="main-header">
-      <app-header [products] = 'products'>
-        <app-cart [allCart] = "cart"></app-cart>
+      <app-header>
+        <app-cart></app-cart>
       </app-header>
     </header>
     <section class="main-section">
       <app-section>
-        <app-products [products] = 'products' (intoCart) = "intoCartArray($event)"></app-products>
+        <app-products></app-products>
       </app-section>
     </section>
   </div>

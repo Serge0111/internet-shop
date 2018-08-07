@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { ProductCartService } from '../product-cart.service';
 
 @Component({
   selector: 'app-header',
@@ -8,42 +9,40 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
   public emblem = '../../assets/images/gluts.png';
   public phoneNumber = '../../assets/images/phone-number.png';
-  public searchBy = [{
-    'По умолчанию': 'all'
-  },
-  {
-    'Названию': 'item'
-  },
-  {
-    'Артикулу': 'brand'
-  },
-  {
-    'Бренду' : 'price'
-  }
-  ];
   public objectKeys = [];
   public sort;
   public searchLiveData;
-  @Output() searchData: EventEmitter<any> = new EventEmitter();
-  @Input() products;
-  public getObjectKeys() {
-    for (let i = 0; i < this.searchBy.length; i++ ) {
-      this.objectKeys.push( Object.keys(this.searchBy[i])[0] );
-    }
+  public products = [];
+
+  public toSortBy() {
+    this.objectKeys = this.productCartService.toSortBy();
   }
-  public sendSearchData(searchDataOut) {
-    this.searchLiveData = searchDataOut;
-    this.searchData.emit(searchDataOut);
+
+  public searchDataBy(findBy) {
+    this.searchLiveData = findBy;
   }
-  public getSorted(sort) {
-    this.sort = this.searchBy.filter(search => search[sort])[0][sort];
+
+  public getFieldToSortBy(sort) {
+    this.sort = this.productCartService.getFieldToSortBy(sort);
     console.log(this.sort);
   }
-  constructor() { }
+
+  public getProducts() {
+    this.productCartService.getProducts()
+      .subscribe(products => products['products']
+        .map(product => this.products.push(product))
+      );
+  }
+
+  constructor(
+    private productCartService: ProductCartService
+  ) { }
 
   ngOnInit() {
-    this.getObjectKeys();
+    this.getProducts();
+    this.toSortBy();
     console.log(this.objectKeys);
   }
+
 
 }
