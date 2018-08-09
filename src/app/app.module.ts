@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,6 +10,9 @@ import { CartComponent } from './cart/cart.component';
 import { CartPipe } from './cart.pipe';
 import { ProductsComponent } from './products/products.component';
 import { SearchLivePipe } from './header/search-live.pipe';
+import { RegistrationOrderComponent } from './registration-order/registration-order.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
 
 @NgModule({
   declarations: [
@@ -19,11 +23,15 @@ import { SearchLivePipe } from './header/search-live.pipe';
     CartComponent,
     CartPipe,
     ProductsComponent,
-    SearchLivePipe
+    SearchLivePipe,
+    RegistrationOrderComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

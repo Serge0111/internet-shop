@@ -1,3 +1,11 @@
+<nav class="main-nav">
+    <div class="home">
+        <a routerLink='' routerLinkActive = "active" [routerLinkActiveOptions] = "{exact: true}">Главная</a>
+    </div>
+    <div class="order">
+        <a routerLink = "registration-order" routerLinkActive = "active">Лист заказа</a>
+    </div>
+</nav>
 <div class="section-wrapper">
-    <ng-content select = "app-products"></ng-content>
+    <router-outlet></router-outlet>
 </div>

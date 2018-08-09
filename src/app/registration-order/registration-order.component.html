@@ -1,0 +1,39 @@
+<div class="order">
+  <div>Лист заказа</div>
+  <div class="order-container">
+    <div class="form">
+      <div class="fill-in-form">
+        Заполните форму
+      </div>
+      <div class="fill-data" [formGroup] = "form">
+        <div class="first-last-name">
+          <div>
+            <label for="your-name">Ваше имя*</label>
+            <input type="text" id="your-name" formControlName = "firstName">
+          </div>
+          <div>
+            <label for="last-name">Фамилия</label>
+            <input type="text" id="last-name" formControlName = "lastName">
+          </div>
+        </div>
+        <div class="email-phone">
+          <div>
+            <label for="email">Email*</label>
+            <input type="text" id="email" formControlName = "email" [ngClass] = "{'invalid': inValid}">          </div>
+          <div>
+            <label for="phone-number">Телефон</label>
+            <input type="text" id="phone-number" formControlName = "phone">
+          </div>
+        </div>
+      </div>
+      <div class="comment-for-order">
+        <div>
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+    </div>
+    <div>
+      ваш заказ
+    </div>
+  </div>
+</div>
