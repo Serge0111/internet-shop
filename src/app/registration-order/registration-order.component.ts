@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./registration-order.component.sass']
 })
 export class RegistrationOrderComponent implements OnInit {
-  public inValid = false;
+  public hide = false;
   public form: FormGroup = this._fb.group({
     firstName: ['name'],
     lastName: ['lastname'],
@@ -16,12 +16,13 @@ export class RegistrationOrderComponent implements OnInit {
 
   public myValidator(formValue) {
     if (formValue.value.length < 3) {
-      
-      return {error: 'sory'};
+      console.log(formValue);
+      return {'no-equal': true};
     } else {
-      return {ok: 'ok'};
+      return null;
     }
   }
+
   constructor(
     private _fb: FormBuilder
   ) { }
