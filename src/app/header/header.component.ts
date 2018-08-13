@@ -13,6 +13,8 @@ export class HeaderComponent implements OnInit {
   public sort;
   public searchLiveData;
   public products = [];
+  public pickedCategory: string;
+  public opened = false;
 
   public toSortBy() {
     this.objectKeys = this.productCartService.toSortBy();
@@ -22,9 +24,12 @@ export class HeaderComponent implements OnInit {
     this.searchLiveData = findBy;
   }
 
-  public getFieldToSortBy(sort) {
+  public getFieldToSortBy(sort, ref) {
     this.sort = this.productCartService.getFieldToSortBy(sort);
     console.log(this.sort);
+    this.pickedCategory = sort;
+    this.openCategory();
+    console.log(ref.target.innerHTML);
   }
 
   public getProducts() {
@@ -32,6 +37,9 @@ export class HeaderComponent implements OnInit {
       .subscribe(products => products['products']
         .map(product => this.products.push(product))
       );
+  }
+  public openCategory() {
+    this.opened = !this.opened;
   }
 
   constructor(

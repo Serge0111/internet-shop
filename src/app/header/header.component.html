@@ -10,22 +10,28 @@
   </div>
   <div class="search">
     <input type="text" (input) = "searchDataBy(findDataBy.value)" placeholder="Более 1000 товаров" #findDataBy>
-    <input type="submit" value="">
     <div class="search-result">
       <ul>
         <li *ngFor ="let product of products | searchLive: [searchLiveData, sort]">
+          <div class="image"><img [src]="product.image" [alt]="product.image"></div>
+          <div>{{product.name}}</div>
           <div>{{product.item}}</div>
           <div>{{product.price}}</div>
           <div>{{product.brand}}</div>
         </li>
       </ul>
     </div>
+    <div class="choose-category" (click) = "openCategory()">
+      <span *ngIf = "!pickedCategory">Выберите категорию</span>
+      <span *ngIf = "pickedCategory">{{pickedCategory}}</span>
+    </div>
     <div class="search-by">
-      <ul>
+      <ul *ngIf = "opened">
         <li>Искать по:</li>
-        <li *ngFor = 'let sort of objectKeys' (click) = "getFieldToSortBy(sort)">{{sort}}</li>
+        <li *ngFor = 'let sort of objectKeys' (click) = "getFieldToSortBy(sort, $event)">{{sort}}</li>
       </ul>
     </div>
+    <input type="submit" value="">
   </div>
   <ng-content select="app-cart"></ng-content>
 </header>

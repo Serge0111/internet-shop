@@ -1,5 +1,12 @@
-import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductCartService } from '../product-cart.service';
+import { CartService } from '../cart.service';
+import { Store } from '@ngrx/store';
+import * as ProductsAction from '../store/actions/get-products-actions';
+import * as Cart from '../store/actions/cart-actions';
+import * as Reducers from '../store/reducers/index';
+import * as _ from '../interfaces/products-interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -7,30 +14,27 @@ import { ProductCartService } from '../product-cart.service';
   styleUrls: ['./products.component.sass']
 })
 export class ProductsComponent implements OnInit {
-  public products = [];
+  public products: Observable<_.Products[]>;
+
   constructor(
-    private productCartService: ProductCartService
+    private productCartService: ProductCartService,
+    private cartService: CartService,
+    private store: Store<Reducers.State>
   ) { }
 
   ngOnInit() {
     this.getProducts();
+    this.products = this.store.select(products => products.getProducts.results);
   }
-  public throwIntoCart(product) {
-    this.productCartService.throwIntoCart(product);
+  public throwIntoCart(product: _.Products): void {
+   // this.cartService.throwIntoCart(product);
+    this.store.dispatch(new Cart.ThrowIntoCart(product));
   }
-  public getProducts() {
+  public getProducts(): void {
+    this.store.dispatch(new ProductsAction.GetProducts(true) );
+
     this.productCartService.getProducts()
-      .subscribe(products => products['products']
-        .map(product => this.products.push(product))
+      .subscribe(products => this.store.dispatch(new ProductsAction.GetProductsSuccess( products['products']))
       );
   }
-}
-interface Products {
-  id: number;
-  name: string;
-  item: 1123;
-  brand: string;
-  price: 1010;
-  amount: 1;
-  image: string;
 }

@@ -1,6 +1,9 @@
+import { Products } from '../interfaces/products-interface';
 import { Component, OnInit, Input } from '@angular/core';
-import { ProductCartService } from '../product-cart.service';
-
+import { CartService } from '../cart.service';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as Reducers from '../store/reducers/index';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -8,9 +11,11 @@ import { ProductCartService } from '../product-cart.service';
 })
 export class CartComponent implements OnInit {
   public allCart = [];
+  public carts: Observable<Products[]>;
   public cartIcon = '../../assets/images/cart-icon.png';
   constructor(
-    private productCartService: ProductCartService
+    private cartService: CartService,
+    private store: Store<Reducers.State>
   ) { }
   public cartSwitcher = false;
   public switchCart() {
@@ -18,17 +23,19 @@ export class CartComponent implements OnInit {
   }
 
   public getCart() {
-    this.allCart = this.productCartService.getCart();
+    this.allCart = this.cartService.getCart();
+    this.carts = this.store.select(item => item.Cart.products);
+
   }
 
-  public removeFromCart(cartId) {
-    this.productCartService.removeFormCart(cartId);
-    this.allCart = this.productCartService.getCart();
+ /* public removeFromCart(cartId) {
+    this.cartService.removeFormCart(cartId);
+    this.allCart = this.cartService.getCart();
   }
 
   public productAmount(cart, action) {
-    this.productCartService.productAmount(cart, action);
-  }
+    this.cartService.productAmount(cart, action);
+  }*/
   ngOnInit() {
     this.getCart();
   }
