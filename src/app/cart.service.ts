@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CartService {
   private cart = [];
-  public throwIntoCart(product) {
+  /*public throwIntoCart(product) {
     let theSameProduct = 0;
     theSameProduct = this.cart.find( item => {
       if (item.id === product.id) {
@@ -41,6 +41,6 @@ export class CartService {
         return true;
       }
     });
-  }
+  }*/
   constructor() { }
 }

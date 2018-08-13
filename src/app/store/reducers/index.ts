@@ -5,11 +5,11 @@ import * as cart from './cart-reducer';
 
 
 export interface State {
-    getProducts: fromGetProducts.State;
+    Products: fromGetProducts.State;
     Cart: cart.CartState;
 }
 
 export const reducers: ActionReducerMap<State> = {
-    getProducts: fromGetProducts.reducer,
+    Products: fromGetProducts.reducer,
     Cart: cart.reducer
 };

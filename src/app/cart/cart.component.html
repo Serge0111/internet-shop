@@ -16,6 +16,6 @@
             <button (click) = "removeFromCart(cart.id)"><img src="../../assets/images/delete.png"></button>
         </div>
     </div>
-    <div class="price" *ngIf = "allCart.length">{{price}}</div>
-    <div class="is-empty" *ngIf = "!allCart.length">КОРЗИНА ПУСТАЯ</div>
+    <div class="price" *ngIf = "empty">{{price}}</div>
+    <div class="is-empty" *ngIf = "!empty">КОРЗИНА ПУСТАЯ {{carts.length}}</div>
 </div>

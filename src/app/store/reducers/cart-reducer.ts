@@ -18,9 +18,8 @@ export function reducer ( state = initState, action: CartAction.ThrowIntoCart ):
                 let index = -1;
                 index = state.products.findIndex( (item) => item.id === action.payload.id );
                 if (index !== -1) {
-                    return {
-                        ...state
-                    };
+                    ++state.products[index].amount;
+                    return state;
                 }
             }
             return {
