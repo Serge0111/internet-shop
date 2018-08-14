@@ -11,14 +11,19 @@ const initState: CartState = {
     products: []
 };
 
-export function reducer ( state = initState, action: CartAction.ThrowIntoCart ): CartState {
+export function reducer ( state = initState, action: CartAction.Product ): CartState {
     switch (action.type) {
+        case CartAction.REMOVE_FROM_CART: {
+            return {
+                ...state,
+                products: state.products.filter( (product: _.Products) => product.id !== action.productId)
+            };
+        }
         case CartAction.THROW_INTO_CART: {
             if (state.products.length) {
-                let index = -1;
-                index = state.products.findIndex( (item) => item.id === action.payload.id );
+                let index: number;
+                index = state.products.findIndex( (item: _.Products) => item.id === action.payload.id );
                 if (index !== -1) {
-                    ++state.products[index].amount;
                     return state;
                 }
             }

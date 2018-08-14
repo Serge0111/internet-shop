@@ -1,3 +1,4 @@
+import { getAllproducts } from './../store/selectors/products.selector';
 import { Component, OnInit } from '@angular/core';
 import { ProductCartService } from '../product-cart.service';
 import { CartService } from '../cart.service';
@@ -15,6 +16,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductsComponent implements OnInit {
   public products: Observable<_.Products[]>;
+  public http_url = '../assets/data/db.json';
 
   constructor(
     private productCartService: ProductCartService,
@@ -24,17 +26,17 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
-    this.products = this.store.select(products => products.Products.results);
+    this.products = this.store.select(getAllproducts);
   }
   public throwIntoCart(product: _.Products): void {
    // this.cartService.throwIntoCart(product);
     this.store.dispatch(new Cart.ThrowIntoCart(product));
   }
   public getProducts(): void {
-    this.store.dispatch(new ProductsAction.GetProducts(true) );
+    this.store.dispatch(new ProductsAction.GetProducts(this.http_url) );
 
-    this.productCartService.getProducts()
+    /*this.productCartService.getProducts()
       .subscribe(products => this.store.dispatch(new ProductsAction.GetProductsSuccess( products['products']))
-      );
+      );*/
   }
 }

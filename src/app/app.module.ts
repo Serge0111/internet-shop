@@ -2,7 +2,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -23,7 +22,7 @@ import {reducers} from './store/reducers/index';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './app.effects';
+import { GetProductsEffect } from './store/effects/http-get-products-effect';
 
 @NgModule({
   declarations: [
@@ -45,8 +44,7 @@ import { AppEffects } from './app.effects';
     ReactiveFormsModule,
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects]),
-    MatPaginatorModule
+    EffectsModule.forRoot([GetProductsEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]

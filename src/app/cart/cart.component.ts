@@ -4,6 +4,7 @@ import { CartService } from '../cart.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as Reducers from '../store/reducers/index';
+import * as Cart from '../store/actions/cart-actions';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -27,6 +28,7 @@ export class CartComponent implements OnInit {
   }
 
   public removeFromCart(cartId) {
+    this.store.dispatch(new Cart.RemoveFromCart(cartId));
     // this.cartService.removeFormCart(cartId);
   }
   public isEmpty () {
