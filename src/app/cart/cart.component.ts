@@ -25,6 +25,11 @@ export class CartComponent implements OnInit {
 
   public getCart() {
     this.carts = this.store.select(item => item.Cart.products);
+    if (Array.isArray(this.carts)) {
+      if (this.carts.length) {
+        this.cartService.addToCart(this.carts);
+      }
+    }
   }
 
   public removeFromCart(cartId) {

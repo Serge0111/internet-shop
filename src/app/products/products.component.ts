@@ -16,13 +16,10 @@ import { Observable } from 'rxjs';
 })
 export class ProductsComponent implements OnInit {
   public products: Observable<_.Products[]>;
-  public http_url = '../assets/data/db.json';
 
   constructor(
-    private productCartService: ProductCartService,
-    private cartService: CartService,
     private store: Store<Reducers.State>
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getProducts();
@@ -33,10 +30,6 @@ export class ProductsComponent implements OnInit {
     this.store.dispatch(new Cart.ThrowIntoCart(product));
   }
   public getProducts(): void {
-    this.store.dispatch(new ProductsAction.GetProducts(this.http_url) );
-
-    /*this.productCartService.getProducts()
-      .subscribe(products => this.store.dispatch(new ProductsAction.GetProductsSuccess( products['products']))
-      );*/
+    this.store.dispatch(new ProductsAction.GetProducts(true) );
   }
 }

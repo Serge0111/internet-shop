@@ -2,12 +2,12 @@ import * as GetProductActions from '../actions/get-products-actions';
 import * as ProductsInterface from '../../interfaces/products-interface';
 
 export interface State {
-    http: boolean;
+    isLoading: boolean;
     results: ProductsInterface.Products[];
 }
 
 const initialState: State = {
-    http: false,
+    isLoading: false,
     results: []
 };
 
@@ -16,7 +16,7 @@ export function reducer ( state = initialState, action: GetProductActions.AllPro
         case GetProductActions.GET_PRODUCTS: {
             return {
                 ...state,
-                http: action.payload
+                isLoading: action.payload
             };
         }
         case GetProductActions.GET_PRODUCTS_SUCCESS: {

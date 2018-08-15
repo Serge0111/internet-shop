@@ -26,9 +26,9 @@ export class HeaderComponent implements OnInit {
 
   public getFieldToSortBy(sort, ref) {
     this.sort = this.productCartService.getFieldToSortBy(sort);
-    console.log(this.sort);
     this.pickedCategory = sort;
     this.openCategory();
+    console.log(this.sort);
     console.log(ref.target.innerHTML);
   }
 

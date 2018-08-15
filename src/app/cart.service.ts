@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CartService {
-  private cart = [];
+  private cart = window.localStorage;
   /*public throwIntoCart(product) {
     let theSameProduct = 0;
     theSameProduct = this.cart.find( item => {
@@ -18,11 +18,20 @@ export class CartService {
     }
     this.cart.push(product);
   }
-
+*/
+  public addToCart(data) {
+    if (this.cart.getItem('Cart') === null) {
+      this.cart.setItem('Cart', JSON.stringify(data));
+    } else {
+      const datas = this.cart.getItem('Cart');
+      data = JSON.parse(data);
+      // datas = [...data, ...datas];
+    }
+  }
   public getCart() {
     return this.cart;
   }
-
+/*
   public removeFormCart(cartId) {
     this.cart = this.cart.filter( product => product.id !== cartId);
   }
