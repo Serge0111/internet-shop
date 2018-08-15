@@ -2,17 +2,27 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SectionComponent } from './section/section.component';
 import { FooterComponent } from './footer/footer.component';
 import { CartComponent } from './cart/cart.component';
-import { CartPipe } from './cart.pipe';
 import { ProductsComponent } from './products/products.component';
-import { SearchLivePipe } from './header/search-live.pipe';
 import { RegistrationOrderComponent } from './registration-order/registration-order.component';
+
+import { CartPipe } from './cart.pipe';
+import { SearchLivePipe } from './header/search-live.pipe';
+
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
+
+import {StoreModule} from '@ngrx/store';
+import {reducers} from './store/reducers/index';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { GetProductsEffect } from './store/effects/http-get-products-effect';
 
 @NgModule({
   declarations: [
@@ -31,9 +41,12 @@ import { routes } from './routes';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(reducers),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([GetProductsEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

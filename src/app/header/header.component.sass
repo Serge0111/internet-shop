@@ -6,6 +6,7 @@
     align-items: center
     padding: 100px 0 85px 0
     border-bottom: solid 2px black 
+    position: relative
     .emblem
         display: flex
         flex-direction: column
@@ -25,25 +26,63 @@
         flex-direction: row
         justify-content: initial
         align-items: center
-        width: 655px
+        width: 100%
+        max-width: 655px
         height: 35px
-        padding: 0 0 0 15px
+        position: relative
         input[type="text"]
             background: inherit
             color: #adadad
-            width: 600px
             border: none
+            height: 100%
+            width: 100%
             outline: none
-            -webkit-appearance: none
-            vertical-align: center 
+            padding-left: 20px
         input[type="submit"]
             background-color: inherit
             width: 15px
+            height: 14px
             border: none
             outline: none
             cursor: pointer 
-            padding: 0
-            margin: 0
+            margin-right: 30px
             background: url('../../assets/images/search.png') 
-            
-
+        .search-result
+            position: absolute
+            top: 25px
+            width: 100%
+            background: white
+            box-shadow: 2px 5px 11px -3px
+            ul
+                margin: 0
+                padding: 0
+                li
+                    padding-left: 20px
+                    .image
+                        width: 35px
+                        height: 30px
+                        img
+                            width: 35px
+                            height: 30px 
+        .search-by
+            max-width: 180px
+            width: 100%
+            position: absolute
+            right: 30px
+            top: 35px
+            ul
+                background: white
+                padding: 0
+                padding-top: 10px
+                padding-bottom: 10px
+                box-shadow: 2px 5px 11px -3px
+                margin: 0px
+                li
+                    padding-left: 15px 
+                li:not(:nth-child(1)):hover
+                    background: #9054b2
+        .choose-category
+            position: absolute
+            right: 60px
+ul
+    list-style: none
