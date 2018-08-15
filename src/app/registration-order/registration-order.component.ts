@@ -6,20 +6,13 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./registration-order.component.sass']
 })
 export class RegistrationOrderComponent implements OnInit {
-  public inValid = false;
-  public form: FormGroup = this._fb.group({
-    firstName: ['name'],
-    lastName: ['lastname'],
-    email: ['email', [this.myValidator]],
-    phone: ['phone']
-  });
+  public inValid = true;
+  public form: FormGroup;
 
   public myValidator(formValue) {
-    if (formValue.value.length < 3) {
-      
-      return {error: 'sory'};
-    } else {
-      return {ok: 'ok'};
+    if (formValue.value.length < 3 ) {
+      //this.inValid = formValue.dirty;
+      console.log(formValue);
     }
   }
   constructor(
@@ -27,6 +20,12 @@ export class RegistrationOrderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.form = this._fb.group({
+      firstName: ['name'],
+      lastName: ['lastname'],
+      email: ['email', [this.myValidator]],
+      phone: ['phone']
+    });
   }
 
 }
