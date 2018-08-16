@@ -19,37 +19,78 @@ export class CartService {
     this.cart.push(product);
   }
 */
+
+  /*public allSum () {
+    let sum = this.cart.getItem('Cart');
+    let money = 0;
+    sum = JSON.parse(sum);
+    if (Array.isArray(sum)) {
+      sum.forEach( elem => {
+        money = money + elem.price * elem.amount;
+      });
+    }
+    return money;
+  }*/
   public addToCart(data) {
     if (this.cart.getItem('Cart') === null) {
-      this.cart.setItem('Cart', JSON.stringify(data));
+      this.cart.setItem('Cart', JSON.stringify([data]));
     } else {
-      const datas = this.cart.getItem('Cart');
-      data = JSON.parse(data);
-      // datas = [...data, ...datas];
+      let datas = this.cart.getItem('Cart');
+      datas = JSON.parse(datas);
+      if (Array.isArray(datas)) {
+        if (datas.filter( product => product.id === data.id).length) {
+          return;
+        }
+        data = [...datas, data];
+        this.cart.setItem('Cart', JSON.stringify(data));
+      }
     }
   }
+
   public getCart() {
-    return this.cart;
+      return JSON.parse(this.cart.getItem('Cart'));
   }
-/*
+
+  public clearAll () {
+    this.cart.clear();
+  }
+
   public removeFormCart(cartId) {
-    this.cart = this.cart.filter( product => product.id !== cartId);
+    let product = this.cart.getItem('Cart');
+    let cart = [];
+    product = JSON.parse(product);
+    if ( Array.isArray(product)) {
+      cart = product.filter( item => item.id !== cartId);
+      console.log('===');
+      console.log(cart);
+      this.cart.setItem('Cart', JSON.stringify(cart));
+    }
   }
 
   public productAmount(cart, action) {
-    this.cart.find( item => {
-      if (item.id === cart.id) {
-        if (action.op === 'minus') {
-          if (item.amount === 1) {
-            return true;
+    let product = this.cart.getItem('Cart');
+    let carts = [];
+    product = JSON.parse(product);
+    if ( Array.isArray(product)) {
+      console.log( product);
+     carts = product.map( item => {
+        if (item.id === cart.id) {
+          if (action.op === 'minus') {
+            if (item.amount === 1) {
+              return item;
+            }
+            --item.amount;
+          } else {
+            ++item.amount;
           }
-          --item.amount;
-        } else {
-          ++item.amount;
+          return item;
         }
-        return true;
-      }
-    });
-  }*/
+        return item;
+      });
+    }
+    console.log( carts );
+   this.cart.setItem('Cart', JSON.stringify(carts));
+
+  }
   constructor() { }
 }

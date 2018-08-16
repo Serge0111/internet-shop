@@ -16,7 +16,13 @@ export function reducer ( state = initState, action: CartAction.Product ): CartS
         case CartAction.REMOVE_FROM_CART: {
             return {
                 ...state,
-                products: state.products.filter( (product: _.Products) => product.id !== action.productId)
+                products: state.products.filter( (product: _.Products) => product.id !== action.payload)
+            };
+        }
+        case CartAction.THROW_ALL_INTO_CART: {
+            return {
+                isEmpty: action.payload !== null ? false : true,
+                products: action.payload !== null ? [...action.payload] : []
             };
         }
         case CartAction.THROW_INTO_CART: {
