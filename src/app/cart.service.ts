@@ -19,8 +19,12 @@ export class CartService {
     this.cart.push(product);
   }
 */
-
-  /*public allSum () {
+  public amount () {
+    let count = this.getCart();
+    count = count.reduce( (acc, product) => acc + product.amount, 0 );
+    return count;
+  }
+  public allSum () {
     let sum = this.cart.getItem('Cart');
     let money = 0;
     sum = JSON.parse(sum);
@@ -30,7 +34,7 @@ export class CartService {
       });
     }
     return money;
-  }*/
+  }
   public addToCart(data) {
     if (this.cart.getItem('Cart') === null) {
       this.cart.setItem('Cart', JSON.stringify([data]));
@@ -48,7 +52,9 @@ export class CartService {
   }
 
   public getCart() {
-      return JSON.parse(this.cart.getItem('Cart'));
+      return this.cart.getItem('Cart') !== null ?
+         JSON.parse(this.cart.getItem('Cart')) :
+          [];
   }
 
   public clearAll () {

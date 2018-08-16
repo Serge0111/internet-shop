@@ -1,3 +1,4 @@
+import { Product } from './../store/actions/cart-actions';
 import { Products } from '../interfaces/products-interface';
 import { Component, OnInit, Input } from '@angular/core';
 import { CartService } from '../cart.service';
@@ -17,13 +18,14 @@ export class CartComponent implements OnInit {
   public static updateUserStatus = new Subject();
   public carts: Products[];
   public cartIcon = '../../assets/images/cart-icon.png';
+  public sum: number;
+  public goodNumber: number;
   constructor(
     private cartService: CartService,
     private store: Store<Reducers.State>
   ) {
     CartComponent.updateUserStatus.subscribe( () => {
       this.getCart();
-
     });
   }
   public cartSwitcher = false;
@@ -52,12 +54,16 @@ export class CartComponent implements OnInit {
   public thowAll() {
     this.store.dispatch( new Cart.ThrowAllIntoCart(this.cartService.getCart()));
   }
+  public summaAndAmount() {
+    this.sum = this.cartService.allSum();
+    this.goodNumber = this.cartService.amount();
+  }
   ngOnInit() {
     // this.cartService.clearAll();
    // this.store.dispatch( new Cart.ThrowAllIntoCart(this.cartService.getCart()));
+   this.summaAndAmount();
     this.getCart();
-    console.log(this.empty, this.cartService.getCart());
-    console.log(this.carts);
+    console.log(this.sum);
   }
 
 }

@@ -2,7 +2,7 @@
     <div class="cart-icon">
         <img [src]="cartIcon" alt="cart">
     </div>
-    <div class="cart-text">КОРЗИНА<span> (0)</span></div>
+    <div class="cart-text">КОРЗИНА<span> ({{goodNumber}})</span></div>
 </div>
 <div class="cart-list" *ngIf = "cartSwitcher">
     <div class="product-to-buy" *ngFor = "let cart of carts; let i = index">
@@ -16,6 +16,6 @@
             <button (click) = "removeFromCart(cart.id)"><img src="../../assets/images/delete.png"></button>
         </div>
     </div>
-    <div class="price" *ngIf = "carts.length">{{price}}</div>
+    <div class="price" *ngIf = "carts.length">Price:{{sum}}</div>
     <div class="is-empty" *ngIf = "false">КОРЗИНА ПУСТАЯ</div>
 </div>
