@@ -2,12 +2,12 @@ import * as GetProductActions from '../actions/get-products-actions';
 import * as ProductsInterface from '../../interfaces/products-interface';
 
 export interface State {
-    http: boolean;
+    http: string;
     results: ProductsInterface.Products[];
 }
 
 const initialState: State = {
-    http: false,
+    http: '',
     results: []
 };
 

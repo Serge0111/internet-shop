@@ -15,7 +15,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./products.component.sass']
 })
 export class ProductsComponent implements OnInit {
-  public products: Observable<_.Products[]>;
+  public products$: Observable<_.Products[]>;
+  public products:_.Products[];
   public http_url = '../assets/data/db.json';
 
   constructor(
@@ -26,7 +27,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
-    this.products = this.store.select(getAllproducts);
+    this.products$ = this.store.select(getAllproducts);
   }
   public throwIntoCart(product: _.Products): void {
    // this.cartService.throwIntoCart(product);

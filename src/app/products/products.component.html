@@ -1,5 +1,5 @@
 <div class="products-wrap">
-    <div class="products" *ngFor="let product of products | async">
+    <div class="products" *ngFor="let product of products$ | async">
         <img [src]="product.image" [alt]="product.image">
         <p> {{product.name}}</p>
         <div>Артикул: {{product.item}}</div>
